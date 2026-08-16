@@ -33,7 +33,7 @@ func base58encoder(bytes []byte) string {
 func GenerateShortLink(initialLink string, userId string) string {
 	urlHashBytes := sha256hash(initialLink+userId)
 	generatedNumber := new(big.Int).SetBytes(urlHashBytes).Uint64()
-	finalString := base58encoder([]byte(fmt.Sprintf("%d", generatedNumber)))
+	finalString := base58encoder(fmt.Appendf(nil, "%d", generatedNumber))
 	return finalString[:8]
 }
 
